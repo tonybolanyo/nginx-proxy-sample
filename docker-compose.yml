@@ -1,0 +1,25 @@
+version: '3.4'
+
+services:
+  helloservice:
+    build: ./hello
+    ports:
+      - 8080
+
+  byeservice:
+    build: ./bye
+    ports:
+      - 8080
+
+  front:
+    build: ./front
+    ports:
+      - 80
+
+  proxy:
+    build: ./nginx
+    ports:
+      - 3000:80
+    depends_on:
+      - helloservice
+      - byeservice
